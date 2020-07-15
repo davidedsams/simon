@@ -1,0 +1,48 @@
+body {
+	text-align: center;
+}
+
+.gameBoard {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	height: 70vmin;
+	width: 70vmin;
+	margin: auto;
+}
+
+.box {
+	/* display: flex; */
+	border: 1px solid;
+	margin-bottom: -1px;
+	margin-right: -1px;
+}
+
+/* Buttons */
+
+.b1 {
+	background-color: green;
+}
+.layer1:active {
+	background-color: rgb(48, 184, 48);
+}
+
+.b2 {
+	background-color: red;
+}
+.layer2:active {
+	background-color: rgb(255, 148, 164);
+}
+
+.b3 {
+	background-color: yellow;
+}
+.layer3:active {
+	background-color: rgb(253, 253, 200);
+}
+
+.b4 {
+	background-color: blue;
+}
+.layer4:active {
+	background-color: rgb(110, 199, 255);
+}
