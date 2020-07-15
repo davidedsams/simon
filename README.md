@@ -6,7 +6,7 @@
 
 ## Project Description
 
-My app is called Simon. It's a game app for players who want to play Simon online. It's exactly like the popular game of the same name. Simon (the computer) starts the game by pressing a button on the board and the player has to match the button. The game quickly turns from easy to challenging as the pattern of buttons pressed increases by one each time a turn is completed and the player has to remember an increasingly complex pattern. The game ends whenever the player fails to match the pattern of the computer.
+My app is called Simon. It's a game app for players who want to play Simon online. It's exactly like the popular game of the same name. Simon (the computer) starts the game by pressing a button on the board and the player has to match the button. The game quickly turns from easy to challenging as the pattern of buttons pressed increases by one each time a turn is completed and the player has to remember an increasingly complex pattern. The game ends whenever the player fails to match the pattern of the computer or the player matches 5 buttons in a row.
 
 ## Wire Frames
 
