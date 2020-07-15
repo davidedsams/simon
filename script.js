@@ -61,7 +61,6 @@
 // If player wins then Simon congratulates you instead and the game
 // goes back to how it was on loading.
 
-
 // -----------------------------------------------------------------
 // THE CODE
 // -----------------------------------------------------------------
@@ -69,22 +68,26 @@
 // Variables
 // -----------------------------------------------------------------
 
-let start; /* = true or false */
-let turn; /* = a number */
+// let start; = true or false
+// let turn; = a number
 let number;
 let computerPattern = [];
 let playerPattern = [];
-let win; /*= true or false */
-
-
-
-
-
-
+// let win; = true or false 
+// let match; = true or false
 
 // -----------------------------------------------------------------
 // Functions
 // -----------------------------------------------------------------
+
+let start = document.querySelector('.start');
+start.addEventListener('click', handleStartButton);
+function handleStartButton() {
+	computerPattern = [];
+	addOne();
+	
+	console.log(computerPattern);
+}
 
 // This game needs a random number to be chosen and then pushed to
 // an array.
@@ -94,25 +97,28 @@ function randomNumber() {
 }
 
 function addOne() {
-	for (i = 0; i < 10; i++) {
-		return computerPattern[i].push(randomNumber);
-	}
+	computerPattern.push(randomNumber());
+	pressSquare();
 }
 
 // That array then needs to be played by the computer on the buttons.
 
-let box1 = document.querySelector('.box1');
-
-function press1() {
-	box1.classList.add('layer1');
-	setTimeout(function () {
-		box1.classList.remove('layer1');
-	}, 750);
-	return;
+function pressSquare() {
+	let gameBoard = document.querySelector('.gameBoard');
+	// document.querySelector('.box1').style.backgroundColor = "white";
+	for (let i = 0; i < computerPattern.length; i++) {
+		// document.querySelector(`.box${i + 1}`).style.backgroundColor = 'white';
+		document
+			.querySelector(`.box${computerPattern[i]}`)
+			.classList.add(`layer${computerPattern[i]}`);
+		setTimeout(function () {
+			// document.querySelector(`.box${i + 1}`).style.backgroundColor = "white";
+			document
+				.querySelector(`.box${computerPattern[i]}`)
+				.classList.remove(`layer${computerPattern[i]}`);
+		}, 1000);
+	}
 }
-press1();
-setInterval(press1, 800);
-clearInterval();
 
 // Then the player has to match that array or the game ends.
 // If the player successfully matches the array then the computer
@@ -126,60 +132,88 @@ let gameBoard = document.querySelector('.gameBoard');
 gameBoard.addEventListener('mousedown', handleMouseDown);
 
 function handleMouseDown(event) {
+	console.log(event.target);
+
 	if (event.target.classList.contains('box1')) {
-		event.target.classList.add('layer1');
-		startOsc(164.8);
+		document.querySelector('.box1').classList.add('layer1');
+		setTimeout(function () {
+			document.querySelector('.box1').classList.remove('layer1');
+		}, 2000);
+		playerPattern.push(1);
+		// startOsc(164.8);
 	} else if (event.target.classList.contains('box2')) {
-		event.target.classList.add('layer2');
-		startOsc(220.0);
+		document.querySelector('.box2').classList.add('layer2');
+		setTimeout(function () {
+			document.querySelector('.box2').classList.remove('layer2');
+		}, 2000);
+		playerPattern.push(2);
+		// startOsc(220.0);
 	} else if (event.target.classList.contains('box3')) {
-		event.target.classList.add('layer3');
-		startOsc(277.2);
+		document.querySelector('.box3').classList.add('layer3');
+		setTimeout(function () {
+			document.querySelector('.box3').classList.remove('layer3');
+		}, 2000);
+		playerPattern.push(3);
+		// startOsc(277.2);
 	} else if (event.target.classList.contains('box4')) {
-		event.target.classList.add('layer4');
-		startOsc(329.6);
+		document.querySelector('.box4').classList.add('layer4');
+		setTimeout(function () {
+			document.querySelector('.box4').classList.remove('layer4');
+		}, 2000);
+		playerPattern.push(4);
+		// startOsc(329.6);
 	}
+	check();
 }
 
-gameBoard.addEventListener('mouseup', handleMouseUp);
+// gameBoard.addEventListener('mouseup', handleMouseUp);
 
-function handleMouseUp(event) {
-	if (event.target.classList.contains('box')) {
-		stopOsc();
-	}
-}
+// function handleMouseUp(event) {
+// 	if (event.target.classList.contains('box')) {
+// 		stopOsc();
+// 	}
+// }
 
 // This part is where the buttons pressed are checked against the computer array
 function check() {
-	if (computerPattern[computerPattern.length - 1] !== playerPattern[playerPattern.length - 1]) {
-		match = false;
+	
+	console.log(playerPattern);
+	console.log(computerPattern);
+	if (playerPattern.toString() !== computerPattern.toString()) {
+		loseGame();
+		
+	} else if (playerPattern.toString() === computerPattern.toString()) {
+
+		addOne();
+	} else {
+		winGame()
 	}
-	if (match) {
-		winGame();
-	}
+playerPattern = [];
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+// function check() {
+// 	if (playerPattern !== computerPattern) {
+// 		match = false;
+// 		loseGame();
+// 	}
+// 	if (playerPattern === computerPattern) {
+// 		match = true;
+// 		addOne();
+// 	}
+// 	if (playerPattern === computerPattern && turn === 10) {
+// 		winGame();
+// 	}
+// }
 
 function winGame() {
-
+	alert('Great job! You won!');
+	// return;
 }
 
-
-
-
-
+function loseGame() {
+	alert('Game over, man!');
+	// return;
+}
 
 // Audio Stuff
 
@@ -209,35 +243,29 @@ function winGame() {
 // B0
 //
 
-const context = new AudioContext();
-let oscillator;
-let gain;
+// const context = new AudioContext();
+// let oscillator;
+// let gain;
 
-function startOsc(frequency) {
-	oscillator = context.createOscillator();
-	oscillator.type = 'square';
-	oscillator.frequency.value = frequency;
-	oscillator.start(0);
+// function startOsc(frequency) {
+// 	oscillator = context.createOscillator();
+// 	oscillator.type = 'square';
+// 	oscillator.frequency.value = frequency;
+// 	oscillator.start(0);
 
-	oscillator.connect(context.destination);
+// 	oscillator.connect(context.destination);
 
-	gain = context.createGain();
-	gain.gain.value = 1;
+// 	gain = context.createGain();
+// 	gain.gain.value = 1;
 
-	oscillator.connect(gain);
-	gain.connect(context);
-}
+// 	oscillator.connect(gain);
+// 	gain.connect(context);
+// }
 
-function stopOsc() {
-	oscillator.stop(0);
-	oscillator.disconnect();
-}
-
-
-
-
-
-
+// function stopOsc() {
+// 	oscillator.stop(0);
+// 	oscillator.disconnect();
+// }
 
 // -----------------------------------------------------------------
 // References

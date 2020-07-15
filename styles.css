@@ -22,27 +22,27 @@ body {
 .b1 {
 	background-color: green;
 }
-.layer1:active {
+.layer1 {
 	background-color: rgb(48, 184, 48);
 }
 
 .b2 {
 	background-color: red;
 }
-.layer2:active {
+.layer2 {
 	background-color: rgb(255, 148, 164);
 }
 
 .b3 {
 	background-color: yellow;
 }
-.layer3:active {
+.layer3 {
 	background-color: rgb(253, 253, 200);
 }
 
 .b4 {
 	background-color: blue;
 }
-.layer4:active {
+.layer4 {
 	background-color: rgb(110, 199, 255);
 }
