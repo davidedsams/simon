@@ -76,7 +76,7 @@ let playerPattern = [];
 let userClick = 0;
 let turnCounter = 0;
 // let turnCounter = [];
-// let win; = true or false 
+// let win; = true or false
 // let match; = true or false
 
 // -----------------------------------------------------------------
@@ -88,8 +88,6 @@ start.addEventListener('click', handleStartButton);
 function handleStartButton() {
 	computerPattern = [];
 	addOne();
-	
-	// console.log(computerPattern);
 }
 
 // This game needs a random number to be chosen and then pushed to
@@ -106,7 +104,6 @@ function addOne() {
 	// setTimeout(function () {
 	// 	pressSquare()
 	// }, 2000);
-	
 }
 
 // That array then needs to be played by the computer on the buttons.
@@ -130,16 +127,14 @@ function pressSquare() {
 			.classList.add(`layer${computerPattern[j]}`);
 		setTimeout(function () {
 			document
-				.querySelector(`.box${computerPattern[j-1]}`)
-				.classList.remove(`layer${computerPattern[j-1]}`);
+				.querySelector(`.box${computerPattern[j - 1]}`)
+				.classList.remove(`layer${computerPattern[j - 1]}`);
 		}, 1000);
-		j++
+		j++;
 		if (j >= computerPattern.length) {
 			clearInterval(timer);
 		}
-		
 	}, 1500);
-
 }
 
 // This part is just the action of pressing the buttons
@@ -180,7 +175,7 @@ function handleClick(event) {
 		// startOsc(329.6);
 	}
 	userClick++;
-	if (userClick === (turnCounter + 1)) {
+	if (userClick === turnCounter + 1) {
 		console.log('check');
 		check();
 	}
@@ -188,31 +183,26 @@ function handleClick(event) {
 
 // This part is where the buttons pressed are checked against the computer array
 function check() {
-	console.log('computer', computerPattern);
-	console.log('player', playerPattern)
-	if ((playerPattern.toString() !== computerPattern.toString()) && (turnCounter === 5)) {
+	if (playerPattern.toString() !== computerPattern.toString()) {
 		loseGame();
-		console.log('1');
 	} else if (playerPattern.toString() === computerPattern.toString()) {
 		playerPattern = [];
 		userClick = 0;
 		turnCounter++;
 		addOne();
-		console.log('2');
-	} else if ((playerPattern.toString() === computerPattern.toString()) && (turnCounter === 5)) {
+	}
+	if (turnCounter === 10) {
 		winGame();
-		console.log('3');
 	}
 }
 
 function loseGame() {
-	alert('Game over, man!');
-	// return;
+	alert('Game over!');
 }
 
 function winGame() {
 	alert('Great job! You won!');
-	// return;
+	return;
 }
 
 // Audio Stuff
@@ -243,29 +233,51 @@ function winGame() {
 // B0
 //
 
-// const context = new AudioContext();
-// let oscillator;
-// let gain;
+gameBoard.addEventListener('mousedown', handleMouseDown);
 
-// function startOsc(frequency) {
-// 	oscillator = context.createOscillator();
-// 	oscillator.type = 'square';
-// 	oscillator.frequency.value = frequency;
-// 	oscillator.start(0);
+function handleMouseDown(event) {
+	if (event.target.classList.contains('box1')) {
+		startOsc(164.8);
+	} else if (event.target.classList.contains('box2')) {
+		startOsc(220.0);
+	} else if (event.target.classList.contains('box3')) {
+		startOsc(277.2);
+	} else if (event.target.classList.contains('box4')) {
+		startOsc(329.6);
+	}
+}
 
-// 	oscillator.connect(context.destination);
+gameBoard.addEventListener('mouseup', handleMouseUp);
 
-// 	gain = context.createGain();
-// 	gain.gain.value = 1;
+function handleMouseUp(event) {
+	if (event.target.classList.contains('box')) {
+		stopOsc();
+	}
+}
 
-// 	oscillator.connect(gain);
-// 	gain.connect(context);
-// }
+const context = new AudioContext();
+let oscillator;
+let gain;
 
-// function stopOsc() {
-// 	oscillator.stop(0);
-// 	oscillator.disconnect();
-// }
+function startOsc(frequency) {
+	oscillator = context.createOscillator();
+	oscillator.type = 'square';
+	oscillator.frequency.value = frequency;
+	oscillator.start(0);
+
+	oscillator.connect(context.destination);
+
+	gain = context.createGain();
+	gain.gain.value = 1;
+
+	oscillator.connect(gain);
+	gain.connect(context);
+}
+
+function stopOsc() {
+	oscillator.stop(0);
+	oscillator.disconnect();
+}
 
 // -----------------------------------------------------------------
 // References
