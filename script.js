@@ -125,10 +125,13 @@ function pressSquare() {
 		document
 			.querySelector(`.box${computerPattern[j]}`)
 			.classList.add(`layer${computerPattern[j]}`);
+		//
+		// startOsc(`buttonMethods.${computerPattern[j]}`);
 		setTimeout(function () {
 			document
 				.querySelector(`.box${computerPattern[j - 1]}`)
 				.classList.remove(`layer${computerPattern[j - 1]}`);
+			// stopOsc();
 		}, 1000);
 		j++;
 		if (j >= computerPattern.length) {
@@ -137,7 +140,15 @@ function pressSquare() {
 	}, 1500);
 }
 
-// This part is just the action of pressing the buttons
+// Frequencies for Oscillator to be pulled from above function
+const buttonMethods = [
+	{ green: 164.8 },
+	{ red: 220.0 },
+	{ yellow: 277.2 },
+	{ blue: 329.6 },
+];
+
+// This builds the playerPattern array
 let gameBoard = document.querySelector('.gameBoard');
 
 gameBoard.addEventListener('click', handleClick);
@@ -146,31 +157,31 @@ function handleClick(event) {
 	// console.log(event.target);
 	// playerPattern = [];
 	if (event.target.classList.contains('box1')) {
-		document.querySelector('.box1').classList.add('layer1');
-		setTimeout(function () {
-			document.querySelector('.box1').classList.remove('layer1');
-		}, 500);
+		// document.querySelector('.box1').classList.add('layer1');
+		// setTimeout(function () {
+		// 	document.querySelector('.box1').classList.remove('layer1');
+		// }, 500);
 		playerPattern.push(1);
 		// startOsc(164.8);
 	} else if (event.target.classList.contains('box2')) {
-		document.querySelector('.box2').classList.add('layer2');
-		setTimeout(function () {
-			document.querySelector('.box2').classList.remove('layer2');
-		}, 500);
+		// document.querySelector('.box2').classList.add('layer2');
+		// setTimeout(function () {
+		// 	document.querySelector('.box2').classList.remove('layer2');
+		// }, 500);
 		playerPattern.push(2);
 		// startOsc(220.0);
 	} else if (event.target.classList.contains('box3')) {
-		document.querySelector('.box3').classList.add('layer3');
-		setTimeout(function () {
-			document.querySelector('.box3').classList.remove('layer3');
-		}, 500);
+		// document.querySelector('.box3').classList.add('layer3');
+		// setTimeout(function () {
+		// 	document.querySelector('.box3').classList.remove('layer3');
+		// }, 500);
 		playerPattern.push(3);
 		// startOsc(277.2);
 	} else if (event.target.classList.contains('box4')) {
-		document.querySelector('.box4').classList.add('layer4');
-		setTimeout(function () {
-			document.querySelector('.box4').classList.remove('layer4');
-		}, 500);
+		// document.querySelector('.box4').classList.add('layer4');
+		// setTimeout(function () {
+		// 	document.querySelector('.box4').classList.remove('layer4');
+		// }, 500);
 		playerPattern.push(4);
 		// startOsc(329.6);
 	}
@@ -191,17 +202,17 @@ function check() {
 		turnCounter++;
 		addOne();
 	}
-	if (turnCounter === 10) {
+	if (turnCounter === 5) {
 		winGame();
 	}
 }
 
 function loseGame() {
-	alert('Game over!');
+	alert('That was pitiful!');
 }
 
 function winGame() {
-	alert('Great job! You won!');
+	alert('👏 Great job! You won!');
 	return;
 }
 
@@ -237,12 +248,16 @@ gameBoard.addEventListener('mousedown', handleMouseDown);
 
 function handleMouseDown(event) {
 	if (event.target.classList.contains('box1')) {
+		document.querySelector('.box1').classList.add('layer1');
 		startOsc(164.8);
 	} else if (event.target.classList.contains('box2')) {
+		document.querySelector('.box2').classList.add('layer2');
 		startOsc(220.0);
 	} else if (event.target.classList.contains('box3')) {
+		document.querySelector('.box3').classList.add('layer3');
 		startOsc(277.2);
 	} else if (event.target.classList.contains('box4')) {
+		document.querySelector('.box4').classList.add('layer4');
 		startOsc(329.6);
 	}
 }
@@ -270,9 +285,17 @@ function startOsc(frequency) {
 	gain = context.createGain();
 	gain.gain.value = 1;
 
-	oscillator.connect(gain);
-	gain.connect(context);
+	// oscillator.connect(gain);
+	// gain.connect(context);
 }
+
+// function changeVolume(volume) {
+// 	let volume = parseFloat(params.volume);
+
+// 	if (isFinite(volume)) {
+// 		gainNode.gain.value = volume;
+// 	}
+// }
 
 function stopOsc() {
 	oscillator.stop(0);
