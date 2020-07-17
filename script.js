@@ -1,31 +1,4 @@
 // -----------------------------------------------------------------
-// How To Write Simon Slams
-// -----------------------------------------------------------------
-//
-// This game needs a random number to be chosen and then pushed to
-// an array.
-//
-// That array then needs to be played by the computer on the buttons.
-//
-// Then the player has to match that array or the game ends.
-// If the player successfully matches the array then the computer
-// goes back and chooses another random number and pushes it to
-// the array. The player then has to repeat the array just like
-// before except now there are two numbers in the array.
-//
-// The game goes on like this until 10 signals (numbers) are in the
-// array and the player matches them all in order not waiting longer
-// than 5 seconds in between each signal.
-//
-// If at any point in the game the player fails to match the pattern
-// of signals or waits longer than 5 seconds in between pressing the
-// squares the game ends and Simon insults the player. The game goes
-// back to how it was on loading.
-//
-// If player wins then Simon congratulates you instead and the game
-// goes back to how it was on loading.
-
-// -----------------------------------------------------------------
 // Variables
 // -----------------------------------------------------------------
 
