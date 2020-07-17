@@ -44,8 +44,8 @@ If you'd like to play the game right away though, simply follow this link .
 
 ## Contribute
 
-Source Code: https://github.com/davidedsams/simon
-Issue Tracker: https://github.com/davidedsams/simon/issues
+- Source Code: https://github.com/davidedsams/simon
+- Issue Tracker: https://github.com/davidedsams/simon/issues
 
 
 ## Acknowledgements
