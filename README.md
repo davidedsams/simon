@@ -40,7 +40,7 @@ A game app for players who want to play Simon online. It's exactly like the popu
 
 For now just fork, clone or just copy and paste the code into the editor of your choice to play the game in any modern web browser.
 
-If you'd like to play the game right away though, simply follow this link .
+If you'd like to play the game right away though, simply follow this link https://davidedsams.github.io/simon/.
 
 ## Contribute
 
