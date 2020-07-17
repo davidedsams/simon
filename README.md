@@ -2,7 +2,7 @@
 
 A game app for players who want to play Simon online. It's exactly like the popular game in real life except that players also get to enjoy commentary by Simon Cowell as they play. The computer starts the game by pressing a square on the board and the player has to match the square in turn. The game quickly turns from easy to challenging as the pattern of squares pressed increases by one each time a turn is completed and the player has to remember an increasingly complex pattern. The game ends whenever the player fails to match the pattern of the computer or the player matches 8 squares in a row.
 
-![Screen Shot 2020-07-10 at 11 52 49 AM](https://user-images.githubusercontent.com/33344527/87173520-e83d2300-c2a3-11ea-9b03-e7818da4d624.png)
+![Screen Shot 2020-07-17 at 12 17 29 AM](https://user-images.githubusercontent.com/33344527/87748100-fff43a00-c7c2-11ea-991b-8ea97cfa9441.png)
 
 ## User Stories
 
